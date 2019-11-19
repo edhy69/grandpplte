@@ -14,11 +14,20 @@
 # limitations under the License.
 #
 
-/boot emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot
-/data ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/userdata
-/system ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system
-/cache ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/cache
-/misc emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/para
-/recovery emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/recovery
-/external_sd vfat /dev/block/mmcblk1p1 /dev/block/mmcblk1 flags=display="Micro SDcard";storage;wipeingui;removable
+/boot        emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot
+/bootloader  emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/lk
+/proinfo     emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/proinfo
+/data        ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/userdata   flags=encryptable=footer length=-16384
+/system      ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system
+/cache       ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/cache
+/misc        emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/para       flags=backup=1;display=misc
+/recovery    emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/recovery   flags=display=recovery;backup=1
+/efs         ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/EFS        flags=backup=1;display=EFS
+/nvram	     emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvram 	   flags=backup=1;subpartitionof=/efs
+/nvdata	     emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvdata 	   flags=backup=1;subpartitionof=/efs
+/md1img      emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/md1img     flags=backup=1;display=modem
+/md1dsp      emmc /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/md1dsp     flags=backup=1;subpartitionof=/md1img
+/preload     ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/hidden
+     
+/external_sd vfat /dev/block/mmcblk1p1 /dev/block/mmcblk1                          flags=display="Micro SDcard";storage;wipeingui;removable
 
